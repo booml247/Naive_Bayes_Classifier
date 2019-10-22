@@ -15,6 +15,9 @@ in_file = sys.argv[1]
 out_file = sys.argv[2]
 
 data = pd.read_csv(in_file)
+data["gaming"] = data["gaming"].mask(data["gaming"] > 10, 10)
+data["reading"] = data["reading"].mask(data["reading"] > 10, 10)
+
 
 '''get the continuous valued columns'''
 cat_columns = ["gender", "race", "race_o", "samerace", "field", "decision"]
@@ -25,6 +28,7 @@ preference_scores_of_partner = ["pref_o_attractive", "pref_o_sincere", "pref_o_i
 "pref_o_ambitious", "pref_o_shared_interests"]
 age_cor = ["age", "age_o"]
 interest_cor = ["interests_correlate"]
+
 
 '''discretize the continous valued columns'''
 bin_nums = 5
